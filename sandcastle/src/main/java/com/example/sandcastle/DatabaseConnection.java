@@ -15,6 +15,7 @@ public class DatabaseConnection {
         try
         {
              Class.forName("com.mysql.cj.jdbc.Driver");
+             //"org.apache.derby.jdbc.ClientDriver"
              databaseLink = DriverManager.getConnection(url, databaseUser, databasePassword);
         }
         catch (Exception e)

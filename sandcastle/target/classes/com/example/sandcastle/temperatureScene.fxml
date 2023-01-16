@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -26,7 +23,7 @@
                         <Image url="@../../../imgs/2328966.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Dashboard">
+                  <Button fx:id="dashboardButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleDashboardScene" prefHeight="40.0" prefWidth="128.0" text="Dashboard">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -40,7 +37,7 @@
                         <Image url="@../../../imgs/external-employees-hr-edtim-solid-edtim-3.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="employeesButton" mnemonicParsing="false" onAction="#handleEmployees" prefHeight="40.0" prefWidth="128.0" text="Employees">
+                  <Button fx:id="employeesButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleEmployees" prefHeight="40.0" prefWidth="128.0" text="Employees">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -54,7 +51,7 @@
                         <Image url="@../../../imgs/external-ph-meter-gardening-flaticons-lineal-color-flat-icons.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="phMeterButton" mnemonicParsing="false" onAction="#handlePHMeter" prefHeight="40.0" prefWidth="128.0" text="PH meter">
+                  <Button fx:id="phMeterButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlePHMeter" prefHeight="40.0" prefWidth="128.0" text="PH meter">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -82,7 +79,7 @@
                         <Image url="@../../../imgs/temperature-high.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="temperatureButton" mnemonicParsing="false" onAction="#handleTemp" prefHeight="40.0" prefWidth="128.0" text="Temperature">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Temperature">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -96,7 +93,7 @@
                         <Image url="@../../../imgs/front-gate-closed.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="floodGateButton" mnemonicParsing="false" onAction="#handleFloodGate" prefHeight="40.0" prefWidth="128.0" text="Floodgate">
+                  <Button fx:id="floodGateButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleFloodGate" prefHeight="40.0" prefWidth="128.0" text="Floodgate">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -153,94 +150,13 @@
                <children>
                   <VBox spacing="20.0">
                      <children>
-                        <Label text="Dashboard">
+                        <Label text="Temperature">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="120.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="240.0" styleClass="card" stylesheets="@../../../values/styles.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="25.0" prefWidth="186.0" text="Employees">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="38.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../imgs/external-employees-hr-edtim-lineal-color-edtim-3.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="73.0" prefWidth="242.0" text="8">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="240.0" styleClass="card2" stylesheets="@../../../values/styles.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="25.0" prefWidth="186.0" text="PH">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="38.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../imgs/external-ph-meter-gardening-flaticons-lineal-color-flat-icons.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="73.0" prefWidth="242.0" text="8">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="240.0" styleClass="card3" stylesheets="@../../../values/styles.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="25.0" prefWidth="186.0" text="Cloudiness">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="38.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../imgs/thirst.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="73.0" prefWidth="242.0" text="8">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                              </VBox>
                               <VBox prefHeight="200.0" prefWidth="240.0" styleClass="card4" stylesheets="@../../../values/styles.css">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="53.0" prefWidth="240.0">
@@ -273,14 +189,11 @@
                      </children>
                   </VBox>
                   <Pane prefHeight="65.0" prefWidth="1005.0" />
-                  <LineChart fx:id="barChart" prefHeight="429.0" prefWidth="990.0" title="PH LEVEL">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
+                  <ImageView fitHeight="460.0" fitWidth="554.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imgs/cartman.png" />
+                     </image>
+                  </ImageView>
                </children>
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

@@ -6,30 +6,32 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.stage.StageStyle;
-import javafx.scene.Node;
+import javafx.scene.chart.LineChart;
+import javafx.scene.Parent;
+import jssc.SerialPort;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.concurrent.TimeUnit;
+import java.sql.*;
+
+import java.sql.*;
+import jssc.SerialPort;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
 
 import static com.example.sandcastle.Main.hideWindow;
 
 public class Controller {
     @FXML
-    private Label welcomeText;
+    private Button cancelButton, temperatureButton, employeesButton, phMeterButton, floodGateButton, dashboardButton;
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-    ActionEvent actionEvent;
-
-    @FXML
-    private Button cancelButton;
+    private Button cloudinessButton, floodGateOpen, floodGateClose;
     @FXML
     private Label loginMessageLabel;
     @FXML
@@ -37,6 +39,7 @@ public class Controller {
     @FXML
     private TextField passwordPasswordField;
 
+    // window na login scherm, dashboard scherm
     public void switchToScene2(Stage stage2) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("homeScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1315, 810);
@@ -45,59 +48,78 @@ public class Controller {
         stage2.show();
     }
 
-    public void loginButtonOnAction(ActionEvent e)
-    {
-
-        if (usernameTextField.getText().isBlank() == false && passwordPasswordField.getText().isBlank() == false)
-        {
-            // loginMessageLabel.setText("Incorrect username or password!");
-            validateLogin();
-        }
-        else
-        {
-            loginMessageLabel.setText("Please enter username and password.");
-        }
-
+    public void handleDashboardScene() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("homeScreen.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
     }
 
-    public void cancelButtonOnAction(ActionEvent e)
-    {
+    public void handleTemp() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("temperatureScene.fxml"));
+        Stage window = (Stage) temperatureButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
+    }
+
+    public void handleEmployees() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("employeesScene.fxml"));
+        Stage window = (Stage) employeesButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
+    }
+    public void handlePHMeter() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("phMeterScene.fxml"));
+        Stage window = (Stage) phMeterButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
+    }
+    public void handleCloudiness() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("cloudinessScene.fxml"));
+        Stage window = (Stage) cloudinessButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
+    }
+    public void handleFloodGate() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("floodGateScene.fxml"));
+        Stage window = (Stage) floodGateButton.getScene().getWindow();
+        window.setScene(new Scene(root, 1315, 810));
+    }
+
+
+    public void loginButtonOnAction(ActionEvent e) {
+
+        if (usernameTextField.getText().isBlank() == false && passwordPasswordField.getText().isBlank() == false) {
+            // loginMessageLabel.setText("Incorrect username or password!");
+            validateLogin();
+        } else {
+            loginMessageLabel.setText("Please enter username and password.");
+        }
+    }
+
+    public void cancelButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    public void validateLogin()
-    {
+
+    public void validateLogin() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
         String verifyLogin = "select count(1) from UserAccounts where username = '" + usernameTextField.getText() + "' and password = '" + passwordPasswordField.getText() + "'";
 
-        try
-        {
+        try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             Main m = new Main();
 
-            while (queryResult.next())
-            {
-                if (queryResult.getInt(1) == 1)
-                {
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) == 1) {
                     loginMessageLabel.setText("Welcome!");
-                    //m.changeScene("homeScreen.fxml");
-                    //((Node)actionEvent.getSource()).getScene().getWindow().hide();
                     hideWindow();
                     switchToScene2(new Stage());
-                }
-                else
-                {
+                } else {
                     loginMessageLabel.setText("Invalid Login. Please try again.");
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
+
